@@ -1,6 +1,5 @@
 package com.wenhao.demo.config;
 
-import org.springframework.beans.factory.wiring.BeanWiringInfo;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -17,7 +16,10 @@ public class WebInitializer implements WebApplicationInitializer {
         app.register(MyConfig.class);
         DispatcherServlet dispatcherServlet = new DispatcherServlet(app);
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcherServlet", dispatcherServlet);
-        dispatcher.addMapping("/**");
+        dispatcher.addMapping("/");
         dispatcher.setLoadOnStartup(1);
+
+        /*ServletRegistration.Dynamic payServlet = servletContext.addServlet("payServlet", new PayServlet());
+        payServlet.addMapping("/pay");*/
     }
 }
